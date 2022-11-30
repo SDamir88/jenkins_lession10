@@ -1,19 +1,17 @@
 package tests;
 import com.codeborne.selenide.Configuration;
-import docs.RegistrationPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxTests {
-    RegistrationPage registrationPage = new RegistrationPage();
 
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.browser = "firefox";
+//        Configuration.browser = "firefox";
     }
 
     @Test
@@ -28,6 +26,7 @@ public class TextBoxTests {
         $("#output").shouldHave(text("Alex"), text("alex@company.com"),
                 text("Some address 1"), text("Other address 2"));
         $("#name").shouldHave(text("Alex"));
+
         $("#currentAddress").shouldHave(text("Some address 1")); // wrong
         $("#currentAddress", 1).shouldHave(text("Some address 1"));
         $("#output").$("#currentAddress").shouldHave(text("Some address 1"));
